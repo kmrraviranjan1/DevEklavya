@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { questionService } from "../service/question.service";
 import { useState } from "react";
+import Question from "../components/Question";
 
 const Interview = () => {
   const [searchParams] = useSearchParams();
@@ -9,10 +10,16 @@ const Interview = () => {
   const [data] = useState(questionService.getQuestions(type, value));
   return (
     <div>
-      Interview for {data.topic}
-      {data.questions?.map((question) => {
-        return <div key={question.id}>Question: {question.question}</div>;
-      })}
+      <p className="text-center my-2">
+        Interview for <span className="font-bold">{data.topic}</span>{" "}
+      </p>
+      {data.questions
+        ?.filter(({ question }) => question.length)
+        ?.map((question, index) => {
+          return (
+              <Question question={question} sn={index + 1}  key={question.id}/>
+          );
+        })}
     </div>
   );
 };

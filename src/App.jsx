@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <p className="text-2xl">Hello Dev Eklavya</p>
+      <p className="text-4xl text-center uppercase">Dev Eklavya</p>
       <RouterProvider router={router} />
     </>
   );
